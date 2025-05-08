@@ -11,15 +11,17 @@ type User = {
 type Category = {
   name: string;
   severity: number;
+  reason: string;
 };
 
 type AIModelResponse = {
   categories: Category[];
-  reason: string;
+  isAcceptable: boolean;
 };
 
 export interface AiModel {
   checkComment(comment: string): Promise<AIModelResponse>;
   checkPost(post: string): Promise<AIModelResponse>;
   checkUser(user: User): Promise<AIModelResponse>;
+  checkImage(image: string): Promise<AIModelResponse>;
 }
