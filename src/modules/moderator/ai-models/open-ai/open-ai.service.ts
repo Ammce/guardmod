@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
@@ -144,5 +146,9 @@ export class OpenAiService {
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
     return JSON.parse(content) as { data: any };
+  }
+
+  async moderateImage(_image: string) {
+    throw new Error('Not implemented');
   }
 }

@@ -16,4 +16,8 @@ export class ModeratorService {
   async moderateMessage(message: string) {
     return this.openAiService.moderateMessage(message);
   }
+
+  async moderateImage(image: string) {
+    return this.openAiService.moderateImage(image);
+  }
 }
