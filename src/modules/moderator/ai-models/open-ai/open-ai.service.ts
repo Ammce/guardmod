@@ -45,7 +45,6 @@ export class OpenAiService {
     });
   }
   async moderateComment(comment: string) {
-    // TODO - Change version
     const response = await this.openai.chat.completions.create({
       model: 'gpt-4.1',
       messages: [...context, { role: 'user', content: comment }],
@@ -53,6 +52,8 @@ export class OpenAiService {
 
     console.log('Response from ai');
     console.dir(response, { depth: null });
-    return response;
+    const content = String(response.choices[0].message.content);
+    if (!content) throw new Error('No content in response');
+    return JSON.parse(content) as { data: any };
   }
 }
