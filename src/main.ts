@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('GuardMod API')
-    .setDescription('The GuardMod API documentation')
+    .setDescription('The GuardMod API documentation v1')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
