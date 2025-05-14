@@ -29,12 +29,36 @@ export class ModeratorController {
       },
     },
   })
-  @Post('comments')
+  @Post('comments/single')
   moderateComment(@Body() { comment }: { comment: string }) {
     console.log('Comment is ', comment);
     return this.moderatorService.moderateComment(comment);
   }
 
+  @ApiOperation({ summary: 'Moderate a list of comments' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        comments: { type: 'array', items: { type: 'string' } },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'The comments have been moderated',
+    schema: {
+      type: 'object',
+      properties: {
+        comments: { type: 'array', items: { type: 'object' } },
+      },
+    },
+  })
+  @Post('comments')
+  moderateComments(@Body() { comments }: { comments: string[] }) {
+    console.log('Comments are ', comments);
+    return this.moderatorService.moderateComments(comments);
+  }
   @Post('posts')
   moderatePost(@Body() { post }: { post: string }) {
     console.log('Post is ', post);

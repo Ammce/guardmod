@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { ModeratorModule } from './modules/moderator/moderator.module';
+import { FromCsvModule } from './modules/from-csv/from-csv.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { ModeratorModule } from './modules/moderator/moderator.module';
       isGlobal: true,
     }),
     ModeratorModule,
+    FromCsvModule,
   ],
   controllers: [AppController],
 })

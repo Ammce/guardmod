@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OpenAiService } from './ai-models/open-ai/open-ai.service';
+import { OpenAiService } from '../ai-models/open-ai/open-ai.service';
 
 @Injectable()
 export class ModeratorService {
@@ -7,6 +7,10 @@ export class ModeratorService {
 
   async moderateComment(comment: string) {
     return this.openAiService.moderateComment(comment);
+  }
+
+  async moderateComments(comments: string[]) {
+    return this.openAiService.moderateComments(comments);
   }
 
   async moderatePost(post: string) {
