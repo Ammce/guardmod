@@ -150,7 +150,7 @@ export class GeminiCsvController {
       'modules',
       'from-csv',
       'csvs',
-      'etika.csv',
+      'csvExample.csv',
     );
 
     // Read CSV file
