@@ -130,7 +130,7 @@ export class GPTCsvController {
       'modules',
       'from-csv',
       'csvs',
-      'kika.csv',
+      'csvExample.csv',
     );
 
     // Read CSV file
