@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ModeratorService } from './moderator.service';
+import { ModeratorService } from './moderator-text.service';
 
 describe('ModeratorService', () => {
   let service: ModeratorService;

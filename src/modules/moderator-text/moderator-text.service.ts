@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OpenAiService } from '../ai-models/open-ai/open-ai.service';
+import { OpenAiService } from '../llm-models/open-ai/open-ai.service';
 
 @Injectable()
 export class ModeratorService {

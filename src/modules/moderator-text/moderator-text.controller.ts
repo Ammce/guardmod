@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ModeratorService } from './moderator.service';
+import { ModeratorService } from './moderator-text.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 // TODO - Finish up documentation for all endpoints

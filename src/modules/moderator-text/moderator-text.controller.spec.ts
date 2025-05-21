@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ModeratorController } from './moderator.controller';
+import { ModeratorController } from './moderator-text.controller';
 
 describe('ModeratorController', () => {
   let controller: ModeratorController;

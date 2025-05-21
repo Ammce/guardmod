@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
-import { ModeratorModule } from './modules/moderator/moderator.module';
+import { ModeratorModule } from './modules/moderator-text/moderator-text.module';
 import { FromCsvModule } from './modules/from-csv/from-csv.module';
 
 @Module({
