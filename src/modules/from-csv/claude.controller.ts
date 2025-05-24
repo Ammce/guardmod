@@ -196,12 +196,12 @@ export class ClaudeCsvController {
       'modules',
       'from-csv',
       'csvs',
-      'csvExample.csv',
+      'toModerate.csv',
     );
 
     // Read CSV file
     const records = this.readCsvFile(csvPath);
-    const SKIP_ROWS = 2225;
+    const SKIP_ROWS = 0;
     const recordsToProcess = records.slice(SKIP_ROWS);
     const totalComments = recordsToProcess.length;
     const BATCH_SIZE = 5;
