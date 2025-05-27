@@ -70,10 +70,4 @@ export class ModeratorController {
     console.log('Message is ', message);
     return this.moderatorService.moderateMessage(message);
   }
-
-  @Post('images')
-  moderateImage(@Body() { image }: { image: string }) {
-    console.log('Image is ', image);
-    return this.moderatorService.moderateComment(image);
-  }
 }
