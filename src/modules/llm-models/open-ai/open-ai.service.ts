@@ -3,6 +3,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
+import { ModeratorTextOptions } from 'src/modules/moderator-text/moderator-text.types';
 
 // TODO - Reuse this message everywhere, especially the content that is used as context.
 const moderateCommentContext: OpenAI.Chat.ChatCompletionMessageParam[] = [
@@ -168,7 +169,7 @@ export class OpenAiService {
       organization: this.configService.get('OPENAI_ORGANIZATION'),
     });
   }
-  async moderateComment(comment: string) {
+  async moderateComment(comment: string, options?: ModeratorTextOptions) {
     const response = await this.openai.chat.completions.create({
       model: 'gpt-4.1',
       messages: [...moderateCommentContext, { role: 'user', content: comment }],

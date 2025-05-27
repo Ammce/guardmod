@@ -1,5 +1,11 @@
 // TODO - This will be used later to unify the different AI models
 
+export enum AvailableModels {
+  GPT_4O = 'gpt-4o',
+  CLAUDE_3_OPUS = 'claude-3-opus-20240229',
+  GEMINI_1_5_PRO = 'gemini-1.5-pro',
+}
+
 type User = {
   id: string;
   firstName: string;

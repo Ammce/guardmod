@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { OpenAiService } from '../llm-models/open-ai/open-ai.service';
+import { ModeratorTextOptions } from './moderator-text.types';
 
 @Injectable()
 export class ModeratorService {
   constructor(private readonly openAiService: OpenAiService) {}
 
-  async moderateComment(comment: string) {
-    return this.openAiService.moderateComment(comment);
+  async moderateComment(comment: string, options?: ModeratorTextOptions) {
+    return this.openAiService.moderateComment(comment, options);
   }
 
   async moderateComments(comments: string[]) {
