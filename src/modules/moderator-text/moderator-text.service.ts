@@ -7,6 +7,7 @@ export class ModeratorService {
   constructor(private readonly openAiService: OpenAiService) {}
 
   async moderateComment(comment: string, options?: ModeratorTextOptions) {
+    // TODO - Loop thorough models and call the appropriate service and pass the models what to use.
     return this.openAiService.moderateComment(comment, options);
   }
 
