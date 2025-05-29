@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ModeratorTextOptions } from 'src/modules/moderator-text/moderator-text.types';
+import { AiModel, AIModelResponse } from '../ai-models.interface';
 
 // TODO - Reuse this message everywhere, especially the content that is used as context.
 const moderateCommentContext: OpenAI.Chat.ChatCompletionMessageParam[] = [
@@ -161,7 +162,7 @@ const moderateMessageContext: OpenAI.Chat.ChatCompletionMessageParam[] = [
 ];
 
 @Injectable()
-export class OpenAiService {
+export class OpenAiService implements AiModel {
   private readonly openai: OpenAI;
   constructor(private configService: ConfigService) {
     this.openai = new OpenAI({
@@ -169,9 +170,12 @@ export class OpenAiService {
       organization: this.configService.get('OPENAI_ORGANIZATION'),
     });
   }
-  async moderateComment(comment: string, options?: ModeratorTextOptions) {
+  async moderateComment(
+    comment: string,
+    model: string,
+  ): Promise<AIModelResponse> {
     const response = await this.openai.chat.completions.create({
-      model: 'gpt-4.1',
+      model: model || 'gpt-4.1',
       messages: [...moderateCommentContext, { role: 'user', content: comment }],
     });
 
@@ -179,7 +183,10 @@ export class OpenAiService {
     console.dir(response, { depth: null });
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
-    return JSON.parse(content) as { data: any };
+    return {
+      ...(JSON.parse(content) as AIModelResponse),
+      model,
+    };
   }
 
   async moderateComments(comments: string[]) {

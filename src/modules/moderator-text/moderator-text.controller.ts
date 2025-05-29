@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ModeratorService } from './moderator-text.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ModeratorTextOptions } from './moderator-text.types';
 
 // TODO - Finish up documentation for all endpoints
 @ApiTags('Moderator')
@@ -30,9 +31,12 @@ export class ModeratorController {
     },
   })
   @Post('comments/single')
-  moderateComment(@Body() { comment }: { comment: string }) {
+  moderateComment(
+    @Body()
+    { comment, options }: { comment: string; options: ModeratorTextOptions },
+  ) {
     console.log('Comment is ', comment);
-    return this.moderatorService.moderateComment(comment);
+    return this.moderatorService.moderateComment(comment, options);
   }
 
   @ApiOperation({ summary: 'Moderate a list of comments' })
