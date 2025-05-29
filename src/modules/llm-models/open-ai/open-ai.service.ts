@@ -183,6 +183,7 @@ export class OpenAiService implements AiModel {
     console.dir(response, { depth: null });
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
+    // TODO - Try catch JSON parse and return null if it fails for specific model
     return {
       ...(JSON.parse(content) as AIModelResponse),
       model,

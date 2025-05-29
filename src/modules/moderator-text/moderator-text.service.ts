@@ -15,22 +15,19 @@ export class ModeratorService {
     console.log('Moderating comment with options ', { comment, options });
     const models = options?.models || [AvailableModels.GPT_4_1];
 
-    const results: AIModelResponse[] = [];
+    const results = await Promise.all(
+      models.map(async (model) => {
+        if (modelsMapper.openAI.includes(model)) {
+          return this.openAiService.moderateComment(comment, model);
+        }
+        // Add other model type checks here in the future
+        return null;
+      }),
+    );
 
-    for (const model of models) {
-      if (modelsMapper.openAI.includes(model)) {
-        const result = await this.openAiService.moderateComment(comment, model);
-        results.push(result);
-      }
-      // if (modelsMapper.claude.includes(model)) {
-      //   return this.claudeService.moderateComment(comment, options);
-      // }
-      // if (modelsMapper.gemini.includes(model)) {
-      //   return this.geminiService.moderateComment(comment, options);
-      // }
-    }
-
-    return results;
+    return results.filter(
+      (result): result is AIModelResponse => result !== null,
+    );
   }
 
   async moderateComments(comments: string[]) {
