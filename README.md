@@ -1,7 +1,7 @@
 # GuardMod
 
 <p align="center">
-  <a href="https://github.com/yourusername/guardmod/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/yourusername/guardmod" alt="License" /></a>
+  <a href="https://github.com/ammce/guardmod/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/ammce/guardmod" alt="License" /></a>
 </p>
 
 ## 🛡️ Democratizing Content Moderation
