@@ -79,7 +79,7 @@ We believe that content moderation should be accessible to everyone. By providin
 
 ## 📚 Documentation
 
-For detailed documentation, visit our [Documentation Site](https://docs.guardmod.com).
+For detailed documentation, visit our [Documentation Site](https://guardmod.com).
 
 ## 📄 License
 
