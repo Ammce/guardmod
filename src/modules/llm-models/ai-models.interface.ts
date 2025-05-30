@@ -23,11 +23,16 @@ export type Category = {
 };
 
 export type AIModelResponse = {
-  categories: Category[];
-  model: string;
-  isAcceptable: boolean;
+  categories?: Category[];
+  model?: string;
+  isAcceptable?: boolean;
+  error?: string;
 };
 
 export interface AiModel {
-  moderateComment(comment: string, model?: string): Promise<AIModelResponse>;
+  moderateComment(
+    comment: string,
+    model?: string,
+    prompt?: string,
+  ): Promise<AIModelResponse>;
 }

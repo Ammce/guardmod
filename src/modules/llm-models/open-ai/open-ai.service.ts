@@ -161,6 +161,8 @@ const moderateMessageContext: OpenAI.Chat.ChatCompletionMessageParam[] = [
   },
 ];
 
+const DEFAULT_GPT_MODEL = 'gpt-4.1';
+
 @Injectable()
 export class OpenAiService implements AiModel {
   private readonly openai: OpenAI;
@@ -172,10 +174,11 @@ export class OpenAiService implements AiModel {
   }
   async moderateComment(
     comment: string,
-    model: string,
+    model?: string,
+    prompt?: string,
   ): Promise<AIModelResponse> {
     const response = await this.openai.chat.completions.create({
-      model: model || 'gpt-4.1',
+      model: model || DEFAULT_GPT_MODEL,
       messages: [...moderateCommentContext, { role: 'user', content: comment }],
     });
 
@@ -184,10 +187,16 @@ export class OpenAiService implements AiModel {
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
     // TODO - Try catch JSON parse and return null if it fails for specific model
-    return {
-      ...(JSON.parse(content) as AIModelResponse),
-      model,
-    };
+    try {
+      return {
+        ...(JSON.parse(content) as AIModelResponse),
+        model: model || DEFAULT_GPT_MODEL,
+      };
+    } catch (error) {
+      return {
+        error: 'Error parsing response',
+      };
+    }
   }
 
   async moderateComments(comments: string[]) {
