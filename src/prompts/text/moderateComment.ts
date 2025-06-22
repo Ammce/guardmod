@@ -1,4 +1,7 @@
-export const getModerateCommentBasicPrompt = () => `
+export const getModerateCommentBasicPrompt = (prompt?: string) =>
+  prompt
+    ? prompt
+    : `
       You are an AI content moderator. Your task is to analyze the following comment and determine whether it contains any inappropriate or harmful content.
       You must assess the context, tone, intent, and potential impact of the comment—not just specific keywords. Consider whether the comment could reasonably be interpreted as harmful, even if it's sarcastic, indirect, or uses coded language.
       You must return a list of applicable categories. For each category, include:
