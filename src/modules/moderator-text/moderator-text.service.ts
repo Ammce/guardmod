@@ -12,7 +12,6 @@ export class ModeratorService {
   constructor(private readonly openAiService: OpenAiService) {}
 
   async moderateComment(comment: string, options?: ModeratorTextOptions) {
-    console.log('Moderating comment with options ', { comment, options });
     const models = options?.models || [AvailableModels.GPT_4_1];
 
     const results = await Promise.all(
