@@ -182,8 +182,6 @@ export class OpenAiService implements AiModel {
       messages: [...moderateCommentContext, { role: 'user', content: comment }],
     });
 
-    console.log('Response from ai');
-    console.dir(response, { depth: null });
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
     // TODO - Try catch JSON parse and return null if it fails for specific model
@@ -211,8 +209,6 @@ export class OpenAiService implements AiModel {
       ],
     });
 
-    console.log('Response from ai');
-    console.dir(response, { depth: null });
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
     return JSON.parse(content) as { data: any };
@@ -223,8 +219,6 @@ export class OpenAiService implements AiModel {
       messages: [...moderatePostContext, { role: 'user', content: post }],
     });
 
-    console.log('Response from ai');
-    console.dir(response, { depth: null });
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
     return JSON.parse(content) as { data: any };
@@ -235,8 +229,6 @@ export class OpenAiService implements AiModel {
       messages: [...moderateMessageContext, { role: 'user', content: message }],
     });
 
-    console.log('Response from ai');
-    console.dir(response, { depth: null });
     const content = String(response.choices[0].message.content);
     if (!content) throw new Error('No content in response');
     return JSON.parse(content) as { data: any };
